@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="tr" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AVENCO 10m LSAM &amp; Kenevir Biyokompozit Ar-Ge Portalı</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      color-scheme: dark;
+    }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background-color: #060a11;
+      color: #e2e8f0;
+      overflow-x: hidden;
+    }
+    .font-mono-tech {
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .grid-bg {
+      background-image:
+        linear-gradient(to right, rgba(30, 41, 59, 0.25) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(30, 41, 59, 0.25) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+    .panel-card {
+      background: linear-gradient(180deg, rgba(15, 23, 42, 0.92) 0%, rgba(10, 15, 28, 0.96) 100%);
+      border: 1px solid rgba(51, 65, 85, 0.7);
+      box-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.7);
+    }
+    .tab-btn {
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+    .tab-btn.active {
+      background: linear-gradient(135deg, rgba(6, 182, 212, 0.18), rgba(16, 185, 129, 0.14));
+      border-color: #22d3ee;
+      color: #f8fafc;
+      box-shadow: 0 0 18px rgba(34, 211, 238, 0.16);
+    }
+    .src-link {
+      color: #38bdf8;
+      text-decoration: underline;
+      text-decoration-color: rgba(56, 189, 248, 0.4);
+      text-underline-offset: 3px;
+      font-size: 0.85em;
+      transition: color 0.15s ease;
+    }
+    .src-link:hover {
+      color: #67e8f9;
+      text-decoration-color: #67e8f9;
+    }
+    .tab-pane {
+      display: none;
+      animation: fadeSlide 0.25s ease-out;
+    }
+    .tab-pane.active {
+      display: block;
+    }
+    @keyframes fadeSlide {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    /* Custom scrollbar */
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: #090e17; }
+    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #475569; }
+  </style>
+</head>
+<body class="min-h-screen grid-bg antialiased selection:bg-cyan-500/30 selection:text-cyan-100">
+
+  <!-- Top Tactical Header -->
+  <header class="sticky top-0 z-40 border-b border-slate-800/90 bg-[#060a11]/90 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-cyan-500/20 to-emerald-500/20 border border-cyan-500/40 flex items-center justify-center shrink-0">
+            <svg class="w-6 h-6 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 17l3-6h12l3 6M4 17h16M7 11V7l5-3 5 3v4" />
+            </svg>
+          </div>
+          <div>
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="font-mono-tech text-[11px] uppercase tracking-widest px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">AR-GE DOSYASI // LSAM-HEMP-10M</span>
+              <span class="font-mono-tech text-[11px] text-slate-400">İstanbul • Avenco İş Birliği</span>
+            </div>
+            <h1 class="text-lg sm:text-xl font-bold tracking-tight text-slate-100 mt-0.5">
+              Kenevir Takviyeli Termoplastik LSAM Tekne &amp; Savunma Kompozitleri
+            </h1>
+          </div>
+        </div>
+        <div class="flex items-center gap-2 text-xs font-mono-tech">
+          <span class="px-2.5 py-1 rounded-md bg-slate-900 border border-slate-700 text-slate-300">
+            Hedef Gövde: <strong class="text-cyan-400">≤ 10 m</strong>
+          </span>
+          <span class="px-2.5 py-1 rounded-md bg-slate-900 border border-slate-700 text-slate-300">
+            Termal Sınır: <strong class="text-amber-400">200–220 °C</strong>
+          </span>
+        </div>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <nav class="mt-3.5 flex items-center gap-2 overflow-x-auto pb-1" role="tablist" aria-label="Araştırma Sekmeleri">
+        <button type="button" class="tab-btn active px-3.5 py-2 rounded-lg border border-slate-800 bg-slate-900/70 text-xs sm:text-sm font-medium text-slate-300 hover:text-white hover:border-slate-600" data-tab="vision" role="tab" aria-selected="true">
+          📌 Proje Vizyonu
+        </button>
+        <button type="button" class="tab-btn px-3.5 py-2 rounded-lg border border-slate-800 bg-slate-900/70 text-xs sm:text-sm font-medium text-slate-300 hover:text-white hover:border-slate-600" data-tab="manufacturing" role="tab" aria-selected="false">
+          ⚙️ Üretim ve Maliyet
+        </button>
+        <button type="button" class="tab-btn px-3.5 py-2 rounded-lg border border-slate-800 bg-slate-900/70 text-xs sm:text-sm font-medium text-slate-300 hover:text-white hover:border-slate-600" data-tab="defense" role="tab" aria-selected="false">
+          🛡️ Savunma Sanayii
+        </button>
+        <button type="button" class="tab-btn px-3.5 py-2 rounded-lg border border-slate-800 bg-slate-900/70 text-xs sm:text-sm font-medium text-slate-300 hover:text-white hover:border-slate-600" data-tab="civil" role="tab" aria-selected="false">
+          🛥️ Sivil &amp; İç Dizayn Panelleri
+        </button>
+        <button type="button" class="tab-btn px-3.5 py-2 rounded-lg border border-slate-800 bg-slate-900/70 text-xs sm:text-sm font-medium text-slate-300 hover:text-white hover:border-slate-600" data-tab="literature" role="tab" aria-selected="false">
+          📚 Literatür &amp; Dünyadaki Örnekler
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-6">
+
+    <!-- ==================== TAB 1: PROJE VİZYONU ==================== -->
+    <section id="tab-vision" class="tab-pane active space-y-6">
+      <div class="panel-card rounded-2xl p-5 sm:p-7">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          <div class="lg:col-span-7 space-y-4">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-mono-tech">
+              <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+              STRATEJİK HEDEF: KALIPSIZ BÜYÜK ÖLÇEKLİ BİYO-EKSTRÜZYON
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-white leading-tight">
+              Avenco 10m LSAM Platformunda Kenevir Takviyeli Termoplastik Dönüşümü
+            </h2>
+            <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+              İstanbul merkezli Türk mühendislik firması <strong class="text-white">Avenco</strong>, 5 yıllık Ar-Ge sürecinin ardından 2022 yılında ilk büyük ölçekli eklemeli imalat (<strong class="text-cyan-300">LSAM / LFAM</strong>) sistemini piyasaya sürmüş olup, KUKA robot kolları ve büyük ölçekli termoplastik pelet ekstrüderleri ile denizcilik sektörüne yönelik 10 metreye kadar tekne gövdeleri ve kalıplar üretebilmektedir
+              (<a href="https://www.avenco3d.com/tr/hakkimizda/" target="_blank" rel="noopener noreferrer" class="src-link">Avenco 3D Hakkımızda</a>;
+              <a href="https://avenco.com.tr/sector/denizcilik-marine/" target="_blank" rel="noopener noreferrer" class="src-link">Avenco Denizcilik</a>;
+              <a href="https://encycam.com/events/avenco-at-expo-3d-istanbul-2026/" target="_blank" rel="noopener noreferrer" class="src-link">ENCY Expo 3D</a>).
+            </p>
+            <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+              Bu projenin temel amacı, LSAM sistemlerinde yaygın kullanılan saf plastikler (ABS, PETG, PP) veya ithal cam/karbon elyaf takviyeleri yerine <strong class="text-emerald-300">yerli kenevir (Cannabis sativa L.) lifi/kıtığı takviyeli termoplastik pelet/kalın filament</strong> kullanarak hem askeri (düşük görünürlük, akustik sönümleme, balistik şok emilimi) hem de sivil denizcilik (hafif kabin bölmeleri, ısı/ses yalıtımı, düşük karbon ayak izi) uygulamalarında yüksek katma değerli bir üretim hattı kurmaktır.
+            </p>
+          </div>
+
+          <!-- Technical Schematic SVG -->
+          <div class="lg:col-span-5 bg-slate-950/80 border border-slate-800 rounded-xl p-4">
+            <div class="text-xs font-mono-tech text-slate-400 mb-2 flex justify-between">
+              <span>SİSTEM MİMARİSİ: AVENCO LFAM + KENEVİR</span>
+              <span class="text-emerald-400">FGF PELET BESLEME</span>
+            </div>
+            <svg viewBox="0 0 420 230" class="w-full h-auto" aria-label="Avenco LSAM Kenevir Tekne Üretim Şeması">
+              <defs>
+                <linearGradient id="hullGrad" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0%" stop-color="#0ea5e9" stop-opacity="0.35"/>
+                  <stop offset="100%" stop-color="#10b981" stop-opacity="0.35"/>
+                </linearGradient>
+              </defs>
+              <!-- Background grid -->
+              <rect x="0" y="0" width="420" height="230" rx="8" fill="#070d18" stroke="#1e293b"/>
+              <!-- Robot Arm Base -->
+              <rect x="30" y="165" width="54" height="28" rx="4" fill="#1e293b" stroke="#475569"/>
+              <text x="57" y="183" fill="#94a3b8" font-size="9" text-anchor="middle" font-family="monospace">KUKA ROBOT</text>
+              <!-- Arm segments -->
+              <line x1="57" y1="165" x2="88" y2="95" stroke="#f59e0b" stroke-width="6" stroke-linecap="round"/>
+              <line x1="88" y1="95" x2="170" y2="75" stroke="#f59e0b" stroke-width="5" stroke-linecap="round"/>
+              <circle cx="88" cy="95" r="5" fill="#e2e8f0"/>
+              <circle cx="170" cy="75" r="5" fill="#e2e8f0"/>
+              <!-- Extruder Head -->
+              <rect x="160" y="78" width="24" height="44" rx="3" fill="#0f172a" stroke="#22d3ee" stroke-width="1.5"/>
+              <polygon points="164,122 180,122 174,138 170,138" fill="#22d3ee"/>
+              <!-- Hopper -->
+              <polygon points="154,52 190,52 182,78 162,78" fill="#10b981" fill-opacity="0.25" stroke="#10b981"/>
+              <text x="172" y="45" fill="#34d399" font-size="9" text-anchor="middle" font-family="monospace">PP/PBS + %30 Kenevir Pelet</text>
+              <!-- 10m Hull Profile -->
+              <path d="M 135 170 Q 220 198 375 162 L 390 142 L 145 142 Z" fill="url(#hullGrad)" stroke="#38bdf8" stroke-width="2"/>
+              <line x1="150" y1="152" x2="380" y2="152" stroke="#22d3ee" stroke-dasharray="4 3" stroke-width="1"/>
+              <line x1="155" y1="162" x2="365" y2="162" stroke="#10b981" stroke-dasharray="4 3" stroke-width="1"/>
+              <text x="268" y="135" fill="#e2e8f0" font-size="10" font-weight="bold" text-anchor="middle" font-family="sans-serif">10m Monolitik Gövde / İç Bölme</text>
+              <text x="268" y="210" fill="#94a3b8" font-size="9" text-anchor="middle" font-family="monospace">Kalıpsız Üretim • ≤205 °C Ekstrüzyon • Düşük RCS &amp; Akustik Yalıtım</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- KPI Cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="panel-card rounded-xl p-4 border-l-4 border-l-cyan-400">
+          <div class="text-xs font-mono-tech text-slate-400">YOĞUNLUK AVANTAJI</div>
+          <div class="text-2xl font-bold text-white mt-1">1.4–1.5 <span class="text-sm font-normal text-slate-400">g/cm³</span></div>
+          <p class="text-xs text-slate-400 mt-1.5">
+            E-cam elyafa (2.5 g/cm³) kıyasla ~%40 daha düşük fiber yoğunluğu; Young modülü ise 70 GPa ile eşdeğer düzeyde
+            (<a href="https://www.mdpi.com/2073-4360/17/3/276" target="_blank" rel="noopener noreferrer" class="src-link">MDPI Polymers, 2025</a>).
+          </p>
+        </div>
+        <div class="panel-card rounded-xl p-4 border-l-4 border-l-emerald-400">
+          <div class="text-xs font-mono-tech text-slate-400">ÜRETİM ENERJİSİ TASARRUFU</div>
+          <div class="text-2xl font-bold text-white mt-1">7.5× <span class="text-sm font-normal text-slate-400">Daha Az Enerji</span></div>
+          <p class="text-xs text-slate-400 mt-1.5">
+            1 ton kenevir lifi üretimi için gereken enerji (GJ/ton), E-cam elyafa göre 7.5 kat daha düşüktür
+            (<a href="https://www.mdpi.com/2073-4360/17/24/3295" target="_blank" rel="noopener noreferrer" class="src-link">MDPI Polymers, 2025</a>).
+          </p>
+        </div>
+        <div class="panel-card rounded-xl p-4 border-l-4 border-l-amber-400">
+          <div class="text-xs font-mono-tech text-slate-400">AKUSTİK YUTMA (ISO 10354-2)</div>
+          <div class="text-2xl font-bold text-white mt-1">α = 0.60–0.97</div>
+          <p class="text-xs text-slate-400 mt-1.5">
+            Kenevir kıtığı ve lifli kompozit panellerde empedans tüpü testlerinde yüksek ses yutma katsayısı
+            (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12873272/" target="_blank" rel="noopener noreferrer" class="src-link">PMC, 2026</a>).
+          </p>
+        </div>
+        <div class="panel-card rounded-xl p-4 border-l-4 border-l-purple-400">
+          <div class="text-xs font-mono-tech text-slate-400">BALİSTİK ENERJİ EMİLİMİ</div>
+          <div class="text-2xl font-bold text-white mt-1">95–108.5 J</div>
+          <p class="text-xs text-slate-400 mt-1.5">
+            Kenevir kumaş takviyeli kompozitlerde geleneksel referans malzemelere (36 J) göre yüksek darbe sönümleme
+            (<a href="https://www.customarmorgroup.com/blogs/news/understanding-the-layers-different-types-of-ballistic-protection" target="_blank" rel="noopener noreferrer" class="src-link">JMRT/Custom Armor</a>).
+          </p>
+        </div>
+      </div>
+
+      <!-- Strategic Fit Matrix -->
+      <div class="panel-card rounded-2xl p-5 sm:p-6">
+        <h3 class="text-lg font-bold text-white mb-3">Neden Avenco LSAM + Kenevir Pelet Kombinasyonu?</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+          <div class="bg-slate-900/70 border border-slate-800 rounded-xl p-4 space-y-2">
+            <div class="font-semibold text-cyan-300">1. Kalıp Maliyetinin Sıfırlanması</div>
+            <p class="text-slate-300 leading-relaxed">
+              Tekne imalatında en pahalı ve zaman alıcı aşama olan dişi/erkek kalıp yapımı LFAM ile ortadan kalkar; 6–7.6 m tekne gövdeleri 40–72 saatte basılabilmektedir
+              (<a href="https://rapidfusion.co.uk/blogs/news/marine-additive-manufacturing-lfam" target="_blank" rel="noopener noreferrer" class="src-link">RapidFusion</a>;
+              <a href="https://ceadgroup.com/segments/large-format-additive-manufacturing-maritime-industry/" target="_blank" rel="noopener noreferrer" class="src-link">CEAD</a>).
+            </p>
+          </div>
+          <div class="bg-slate-900/70 border border-slate-800 rounded-xl p-4 space-y-2">
+            <div class="font-semibold text-emerald-300">2. Doğrudan Pelet (FGF) Ekonomisi</div>
+            <p class="text-slate-300 leading-relaxed">
+              1.75 mm ince filament çekme ve makaralama maliyeti olmadan doğrudan çift vidalı kompaundlama ile üretilen kenevir/PP veya kenevir/rHDPE peletler Avenco ekstrüderinde beslenebilir
+              (<a href="https://www.mdpi.com/2073-4360/12/10/2188" target="_blank" rel="noopener noreferrer" class="src-link">MDPI Polymers, 2020</a>).
+            </p>
+          </div>
+          <div class="bg-slate-900/70 border border-slate-800 rounded-xl p-4 space-y-2">
+            <div class="font-semibold text-amber-300">3. Nozul Aşınmasız Baskı</div>
+            <p class="text-slate-300 leading-relaxed">
+              Cam ve karbon elyaf sert/aşındırıcı olduğu için pahalı sertleştirilmiş çelik/karbür nozullar gerektirirken, kenevir lifi yumuşak yapısıyla nozul aşınmasını minimize eder
+              (<a href="https://medium.com/3dprinterchat/kanesis-hemp-bio-plastic-pla-review-57518be8e765" target="_blank" rel="noopener noreferrer" class="src-link">Kanèsis HBP İncelemesi</a>).
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== TAB 2: ÜRETİM VE MALİYET ==================== -->
+    <section id="tab-manufacturing" class="tab-pane space-y-6">
+      <!-- Manufacturability & Thermal Degradation -->
+      <div class="panel-card rounded-2xl p-5 sm:p-6 space-y-5">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800 pb-4">
+          <div>
+            <h2 class="text-xl font-bold text-white">1. Üretilebilirlik ve Termal Bozunma (Yanma) Çözümleri</h2>
+            <p class="text-sm text-slate-400 mt-0.5">Kenevir tozu, kıtığı (hurd) veya kısa elyafının LSAM pelet/kalın filament formuna dönüştürülmesi</p>
+          </div>
+          <span class="font-mono-tech text-xs px-3 py-1 rounded bg-amber-500/15 text-amber-300 border border-amber-500/30 self-start">KRİTİK EŞİK: 200–220 °C</span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div class="space-y-3 text-sm text-slate-300 leading-relaxed">
+            <p>
+              <strong class="text-white">Evet, üretilebilir:</strong> Kenevir lifleri, mikronize tozu ve kıtıkları (hemp hurd) polimer peletleriyle harmanlanıp ekstrüde edilerek hem FFF filamentine hem de doğrudan büyük ölçekli pelet ekstrüzyonu (<strong class="text-cyan-300">FGF / LSAM</strong>) hammaddesine dönüştürülebilmektedir
+              (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10221133/" target="_blank" rel="noopener noreferrer" class="src-link">PMC10221133</a>;
+              <a href="https://www.researchgate.net/publication/336674272_Polylactidehemp_hurd_biocomposites_as_sustainable_3D_printing_feedstock" target="_blank" rel="noopener noreferrer" class="src-link">ResearchGate PLA/Hemp Hurd</a>).
+            </p>
+            <p>
+              <strong class="text-amber-300">Termal Bozunma Riski:</strong> Termogravimetrik analiz (TGA) sonuçları, kenevir liflerinin yaklaşık <strong class="text-white">220 °C</strong>'ye kadar termal olarak kararlı kaldığını; ancak doğal liflerdeki hemiselüloz bileşeninin bu eşikte bozunmaya başlaması nedeniyle pratik işlem sıcaklığının <strong class="text-white">200 °C</strong> (en fazla 205–210 °C) ile sınırlandırılması gerektiğini göstermektedir
+              (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10221133/" target="_blank" rel="noopener noreferrer" class="src-link">PMC10221133</a>;
+              <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8399699/" target="_blank" rel="noopener noreferrer" class="src-link">PMC8399699</a>).
+              220 °C'de basılan PLA/kenevir numunelerinde baskı sonrası termal özelliklerin kötüleştiği raporlanmıştır
+              (<a href="https://ojs.bioresources.com/index.php/BRJ/article/view/23979" target="_blank" rel="noopener noreferrer" class="src-link">BioResources, 2024</a>).
+            </p>
+            <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-4 space-y-2">
+              <div class="font-semibold text-emerald-300 text-xs font-mono-tech uppercase">Termal Yanmayı Aşmak İçin 5 Mühendislik Önlemi</div>
+              <ul class="space-y-1.5 text-xs sm:text-sm text-slate-300 list-disc pl-4">
+                <li><strong class="text-white">Düşük Ergime Noktalı Matris Seçimi:</strong> PETG (240–250 °C) veya PC yerine <strong class="text-cyan-300">PP</strong> (Tm ~163.7 °C), <strong class="text-cyan-300">rHDPE</strong>, <strong class="text-cyan-300">PBS</strong> (180–200 °C) veya modifiye <strong class="text-cyan-300">PLA</strong> (~185–203 °C) seçilmelidir (<a href="https://www.mdpi.com/2073-4360/13/8/1248" target="_blank" rel="noopener noreferrer" class="src-link">MDPI rPP/Hemp</a>; <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6680790/" target="_blank" rel="noopener noreferrer" class="src-link">PETG 250 °C</a>).</li>
+                <li><strong class="text-white">Alkali (NaOH) Ön İşlemi:</strong> %2.5 NaOH ile yapılan merserizasyon, termal olarak kararsız hemiselüloz, pektin ve mumları uzaklaştırarak lifin termal kararlılığını ve yüzey pürüzlülüğünü artırır (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8399699/" target="_blank" rel="noopener noreferrer" class="src-link">PMC8399699</a>; <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9143432/" target="_blank" rel="noopener noreferrer" class="src-link">PMC9143432</a>).</li>
+                <li><strong class="text-white">Maleik Anhidrit Uyumlulaştırıcı (MAPP / MA-g-PE):</strong> %0.6–5 ağırlıkça maleik anhidrit aşılanmış polimer eklenmesi, hidrofilik kenevir ile hidrofobik matris arasında güçlü ester bağları kurar ve lif dağılımını iyileştirir (<a href="https://www.mdpi.com/2073-4360/14/20/4348" target="_blank" rel="noopener noreferrer" class="src-link">MDPI, 2022</a>; <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8399699/" target="_blank" rel="noopener noreferrer" class="src-link">PMC8399699</a>).</li>
+                <li><strong class="text-white">Biyokömür (Biochar) Katkısı:</strong> Kontrollü piroliz ile elde edilen biyokömür, 400–500 °C üzeri termal kararlılık sunarak kompozitin bozunma başlangıç sıcaklığını (T<sub>onset</sub>) ~15 °C yükseltir (<a href="https://aaltodoc.aalto.fi/server/api/core/bitstreams/3b29b15b-774b-4586-978d-51482bd0d83a/content" target="_blank" rel="noopener noreferrer" class="src-link">Aalto Univ. Tez</a>).</li>
+                <li><strong class="text-white">Kademeli LSAM Kovan Profili:</strong> Büyük ölçekli biyo-ekstrüderlerde (örn. ~37 kg/saat hızında WF-aPLA) besleme 185 °C → sıkıştırma 195 °C → nozul 203–205 °C profiliyle kenevirin yüksek ısıda kalma süresi kısaltılır (<a href="https://www.drdflo.com/pages/Projects/Printcess.html" target="_blank" rel="noopener noreferrer" class="src-link">Dr. D-Flo LFAM</a>; <a href="https://ascelibrary.org/doi/10.1061/JCCOF2.CCENG-4758" target="_blank" rel="noopener noreferrer" class="src-link">ASCE, 2024</a>).</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Thermal & Mechanical Comparison Chart -->
+          <div class="bg-slate-950/70 border border-slate-800 rounded-xl p-4 flex flex-col justify-between">
+            <div>
+              <h3 class="text-sm font-semibold text-white mb-1">Polimer İşleme Sıcaklıkları vs. Kenevir Termal Sınırı</h3>
+              <p class="text-xs text-slate-400 mb-3">Kenevir lifi 200–220 °C üzerinde bozunmaya başlar; bu nedenle matris seçimi kritik önem taşır.</p>
+            </div>
+            <div class="relative h-64">
+              <canvas id="thermalChart"></canvas>
+            </div>
+            <div class="mt-3 text-[11px] text-slate-400">
+              Kaynaklar: <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10221133/" target="_blank" rel="noopener noreferrer" class="src-link">PMC10221133 (PBS/Hemp)</a>,
+              <a href="https://www.mdpi.com/2073-4360/13/8/1248" target="_blank" rel="noopener noreferrer" class="src-link">MDPI (rPP)</a>,
+              <a href="https://ascelibrary.org/doi/10.1061/JCCOF2.CCENG-4758" target="_blank" rel="noopener noreferrer" class="src-link">ASCE (WF-aPLA / CF-ABS)</a>,
+              <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6680790/" target="_blank" rel="noopener noreferrer" class="src-link">PMC (PETG)</a>.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cost Analysis & Interactive Simulator -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <div class="lg:col-span-7 panel-card rounded-2xl p-5 sm:p-6 space-y-4">
+          <h2 class="text-xl font-bold text-white">2. Maliyet Analizi: Kenevir vs. Cam Elyaf ve Saf Polimerler</h2>
+          <p class="text-sm text-slate-300 leading-relaxed">
+            Kenevir takviyeli termoplastik pelet üretimi, <strong class="text-emerald-300">hammadde tonaj fiyatı</strong>, <strong class="text-emerald-300">7.5 kat düşük üretim enerjisi</strong>
+            (<a href="https://www.mdpi.com/2073-4360/17/24/3295" target="_blank" rel="noopener noreferrer" class="src-link">MDPI, 2025</a>) ve <strong class="text-emerald-300">%40 daha düşük fiber yoğunluğu</strong> sayesinde birim hacim maliyetinde önemli avantaj sağlar. Geri dönüştürülmüş HDPE (rHDPE) ile kenevir kombinasyonunun, saf HDPE'ye kıyasla <strong class="text-white">%31–34 daha ucuz</strong> olduğu literatürde gösterilmiştir
+            (<a href="https://wordpress.kpu.ca/najikad93/files/2020/12/Mechanical-Properties-of-hemp-fiber.pdf" target="_blank" rel="noopener noreferrer" class="src-link">KPU Biocomposites Raporu</a>).
+          </p>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse text-xs sm:text-sm">
+              <thead>
+                <tr class="border-b border-slate-700 text-slate-400 font-mono-tech text-[11px] uppercase">
+                  <th class="py-2.5 pr-3">Malzeme / Takviye</th>
+                  <th class="py-2.5 px-3">Yoğunluk (g/cm³)</th>
+                  <th class="py-2.5 px-3">Young Modülü (GPa)</th>
+                  <th class="py-2.5 px-3">Pazar Referans Fiyatı</th>
+                  <th class="py-2.5 pl-3">LSAM Notu</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-800/80 text-slate-300">
+                <tr class="bg-emerald-500/5">
+                  <td class="py-2.5 pr-3 font-semibold text-emerald-300">Kenevir Lifi (HF)</td>
+                  <td class="py-2.5 px-3">1.4–1.5</td>
+                  <td class="py-2.5 px-3">35–70</td>
+                  <td class="py-2.5 px-3">GF'den düşük tonaj fiyatı</td>
+                  <td class="py-2.5 pl-3 text-xs">Nozul aşındırmaz (<a href="https://www.mdpi.com/2073-4360/17/3/276" target="_blank" rel="noopener noreferrer" class="src-link">MDPI</a>)</td>
+                </tr>
+                <tr>
+                  <td class="py-2.5 pr-3 font-semibold text-slate-200">E-Cam Elyaf (GF)</td>
+                  <td class="py-2.5 px-3">2.5–2.6</td>
+                  <td class="py-2.5 px-3">70</td>
+                  <td class="py-2.5 px-3">7.5× yüksek enerji maliyeti</td>
+                  <td class="py-2.5 pl-3 text-xs">Aşındırıcı, geri dönüşümü zor (<a href="https://www.mdpi.com/2073-4360/17/24/3295" target="_blank" rel="noopener noreferrer" class="src-link">MDPI</a>)</td>
+                </tr>
+                <tr>
+                  <td class="py-2.5 pr-3 font-semibold text-slate-200">Saf PLA / ABS (Filament)</td>
+                  <td class="py-2.5 px-3">~1.04–1.24</td>
+                  <td class="py-2.5 px-3">~2.0–3.5</td>
+                  <td class="py-2.5 px-3">$18–28 / kg (1.75mm)</td>
+                  <td class="py-2.5 pl-3 text-xs">Pelet alımında daha ucuz (<a href="https://3dprintcalc.no/guides/pla-vs-petg-vs-abs-cost-comparison" target="_blank" rel="noopener noreferrer" class="src-link">3DPrintCalc</a>)</td>
+                </tr>
+                <tr>
+                  <td class="py-2.5 pr-3 font-semibold text-slate-200">Saf PETG (Filament)</td>
+                  <td class="py-2.5 px-3">1.27</td>
+                  <td class="py-2.5 px-3">~2.1</td>
+                  <td class="py-2.5 px-3">$22–30 / kg (1.75mm)</td>
+                  <td class="py-2.5 pl-3 text-xs">240–250 °C keneviri yakar (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6680790/" target="_blank" rel="noopener noreferrer" class="src-link">PMC</a>)</td>
+                </tr>
+                <tr>
+                  <td class="py-2.5 pr-3 font-semibold text-slate-200">CF/HF Takviyeli PETG</td>
+                  <td class="py-2.5 px-3">~1.30–1.40</td>
+                  <td class="py-2.5 px-3">Yüksek</td>
+                  <td class="py-2.5 px-3">$30–45 / kg (1.75mm)</td>
+                  <td class="py-2.5 pl-3 text-xs">Yüksek hammadde maliyeti (<a href="https://3dprintcalc.no/guides/pla-vs-petg-vs-abs-cost-comparison" target="_blank" rel="noopener noreferrer" class="src-link">3DPrintCalc</a>)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-xs text-slate-400">
+            *Not: Perakende kenevir-PLA filamentleri (Kanèsis, 3D-Fuel) $48–92/kg bandında satılmıştır (<a href="https://www.3dnatives.com/en/hemp-3d-printer-filament-sustainable-alternative-200920184/" target="_blank" rel="noopener noreferrer" class="src-link">3Dnatives</a>); ancak Avenco LSAM sistemi 1.75mm filament yerine doğrudan <strong class="text-white">endüstriyel pelet (FGF)</strong> kullandığı için makaralama maliyeti sıfırlanır.
+          </p>
+        </div>
+
+        <!-- Interactive Simulator -->
+        <div class="lg:col-span-5 panel-card rounded-2xl p-5 sm:p-6 flex flex-col justify-between space-y-4 border-cyan-500/30">
+          <div>
+            <div class="flex items-center justify-between">
+              <h3 class="text-lg font-bold text-white">LSAM Ağırlık &amp; Fiber Etki Simülatörü</h3>
+              <span class="font-mono-tech text-[10px] px-2 py-0.5 rounded bg-cyan-500/15 text-cyan-300">CANLI HESAPLAMA</span>
+            </div>
+            <p class="text-xs text-slate-400 mt-1">Eşdeğer hacimli E-Cam takviyeli yapıya kıyasla kenevirin fiber kütlesi ve gömülü enerji kazanımını hesaplayın.</p>
+          </div>
+
+          <div class="space-y-3.5 text-sm">
+            <div>
+              <div class="flex justify-between text-xs mb-1">
+                <label for="simMass" class="text-slate-300">Hedef Tekne / Panel Kompozit Kütlesi (Referans GF)</label>
+                <span id="simMassVal" class="font-mono-tech text-cyan-300 font-semibold">1200 kg</span>
+              </div>
+              <input id="simMass" type="range" min="200" max="3000" step="50" value="1200" class="w-full accent-cyan-400 cursor-pointer" />
+            </div>
+
+            <div>
+              <div class="flex justify-between text-xs mb-1">
+                <label for="simRatio" class="text-slate-300">Takviye Fiber Oranı (Ağırlıkça %)</label>
+                <span id="simRatioVal" class="font-mono-tech text-emerald-300 font-semibold">%30</span>
+              </div>
+              <input id="simRatio" type="range" min="15" max="40" step="5" value="30" class="w-full accent-emerald-400 cursor-pointer" />
+            </div>
+
+            <div>
+              <label for="simMatrix" class="block text-xs text-slate-300 mb-1">Termoplastik Matris Seçimi</label>
+              <select id="simMatrix" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-400">
+                <option value="pp">Geri Dönüştürülmüş Polipropilen (rPP) — ~164 °C (Optimum)</option>
+                <option value="rhdpe">Geri Dönüştürülmüş HDPE (rHDPE) — ~180 °C (%31-34 Ucuz)</option>
+                <option value="pbs">Biyobozunur PBS — 180–200 °C (Tam Biyo)</option>
+                <option value="pla">Amorf / Modifiye PLA — ~200 °C</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3 pt-2 border-t border-slate-800">
+            <div class="bg-slate-900/90 rounded-xl p-3 border border-slate-800">
+              <div class="text-[11px] text-slate-400">Fiber Kaynaklı Hafifleme</div>
+              <div id="outWeightSave" class="text-xl font-bold text-emerald-400 font-mono-tech mt-0.5">-151 kg</div>
+              <div class="text-[10px] text-slate-500">Eşdeğer fiber hacminde (1.45 vs 2.5 g/cm³)</div>
+            </div>
+            <div class="bg-slate-900/90 rounded-xl p-3 border border-slate-800">
+              <div class="text-[11px] text-slate-400">Yeni Kompozit Kütlesi</div>
+              <div id="outNewMass" class="text-xl font-bold text-cyan-300 font-mono-tech mt-0.5">1049 kg</div>
+              <div id="outMatrixNote" class="text-[10px] text-slate-500">rPP + %30 Kenevir</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== TAB 3: SAVUNMA SANAYİİ ==================== -->
+    <section id="tab-defense" class="tab-pane space-y-6">
+      <div class="panel-card rounded-2xl p-5 sm:p-6 space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800 pb-4">
+          <div>
+            <h2 class="text-xl font-bold text-white">Savunma Sanayii: Stealth (RCS), Akustik &amp; Balistik Performans</h2>
+            <p class="text-sm text-slate-400 mt-0.5">İnsansız Deniz Araçları (İDA/USV) ve devriye platformları için kenevir esaslı çok işlevli kompozit davranışı</p>
+          </div>
+          <span class="font-mono-tech text-xs px-3 py-1 rounded bg-purple-500/15 text-purple-300 border border-purple-500/30 self-start">DÜŞÜK GÖRÜNÜRLÜK &amp; BEKA</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <!-- RCS / Stealth -->
+          <div class="bg-slate-900/75 border border-slate-800 rounded-xl p-4 space-y-3">
+            <div class="flex items-center gap-2">
+              <span class="w-8 h-8 rounded-lg bg-cyan-500/15 border border-cyan-500/30 flex items-center justify-center text-cyan-300 font-bold text-sm">RCS</span>
+              <h3 class="font-bold text-white text-base">Radar Kesit Alanı (Stealth)</h3>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+              İletken karbon elyaf ve metal gövdeler radar dalgalarını güçlü biçimde yansıtırken, lignoselülozik kenevir lifleri <strong class="text-white">dielektrik (yalıtkan)</strong> yapılarıyla radar geçirgen veya kademeli soğurucu (RAM) matrislerde kullanılabilmektedir.
+            </p>
+            <ul class="text-xs text-slate-300 space-y-1.5 list-disc pl-4">
+              <li><strong class="text-cyan-300">Patent Kanıtı (DE102022004648A1):</strong> Radar soğurucu fiber-plastik kompozit patentinde bitkisel lifler arasında doğrudan <strong class="text-white">kenevir lifleri (hemp fibers)</strong> tanımlanmıştır (<a href="https://patents.google.com/patent/DE102022004648A1/en" target="_blank" rel="noopener noreferrer" class="src-link">Google Patents</a>).</li>
+              <li><strong class="text-cyan-300">X-Bant (8–12 GHz) Soğurma Mekanizması:</strong> Dielektrik lifli kompozitlerin karbon nanotüp (CNT) veya biyokömür/iletken dolgu ile hibritlenmesi durumunda -40 dB (%99.99 radar soğurma) seviyesine ulaşan ince RAM yapıları geliştirilebilmektedir (<a href="https://www.iom3.org/resource/stealth-fibre-reinforced-composite-absorbs-radar-waves.html" target="_blank" rel="noopener noreferrer" class="src-link">IOM3 / FibreCoat</a>; <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10646258/" target="_blank" rel="noopener noreferrer" class="src-link">PMC10646258</a>).</li>
+            </ul>
+          </div>
+
+          <!-- Acoustic / Sonar -->
+          <div class="bg-slate-900/75 border border-slate-800 rounded-xl p-4 space-y-3">
+            <div class="flex items-center gap-2">
+              <span class="w-8 h-8 rounded-lg bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-300 font-bold text-sm">dB</span>
+              <h3 class="font-bold text-white text-base">Akustik &amp; Sonar Sönümleme</h3>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+              Kenevir liflerinin ve kıtıklarının doğal <strong class="text-white">gözenekli (porous) mikro yapısı</strong>, ses dalgalarının akustik empedansını değiştirerek mekanik titreşim ve sualtı/kabin gürültüsünü ısı enerjisine dönüştürür.
+            </p>
+            <ul class="text-xs text-slate-300 space-y-1.5 list-disc pl-4">
+              <li><strong class="text-emerald-300">Yüksek Ses Yutma:</strong> ISO 10354-2 empedans tüpü testlerinde kenevir kıtıklı kompozit panellerde tepe ses yutma katsayısı <strong class="text-white">α = 0.60 – 0.97</strong> aralığında ölçülmüştür (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12873272/" target="_blank" rel="noopener noreferrer" class="src-link">PMC12873272</a>).</li>
+              <li><strong class="text-emerald-300">Düşük Frekans Performansı:</strong> Çok katmanlı kenevir kompozitlerinde 0–500 Hz bandında <strong class="text-white">%90'a varan ses yutma</strong> gözlenmiştir (<a href="https://www.mdpi.com/2504-477x/6/12/373" target="_blank" rel="noopener noreferrer" class="src-link">MDPI J. Compos. Sci.</a>).</li>
+              <li><strong class="text-emerald-300">Rezonans Sönümleme:</strong> İşlem görmüş kenevir kompozitlerinde 1897 Hz'de akustik rezonans sönümlemesinde %79.5–81 iyileşme raporlanmıştır (<a href="https://www.mdpi.com/2073-4360/18/10/1189" target="_blank" rel="noopener noreferrer" class="src-link">MDPI Polymers</a>).</li>
+            </ul>
+          </div>
+
+          <!-- Ballistic / Spall Liner -->
+          <div class="bg-slate-900/75 border border-slate-800 rounded-xl p-4 space-y-3">
+            <div class="flex items-center gap-2">
+              <span class="w-8 h-8 rounded-lg bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amber-300 font-bold text-sm">KE</span>
+              <h3 class="font-bold text-white text-base">Balistik &amp; Şok Direnci</h3>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+              Cam elyaf kırılgan (brittle) yapıda iken, kenevir lifleri yüksek esneklik ve <strong class="text-white">darbe enerjisi emilimi</strong> sayesinde şarapnel tutucu (spall liner) ve şok sönümleyici katmanlarda öne çıkar.
+            </p>
+            <ul class="text-xs text-slate-300 space-y-1.5 list-disc pl-4">
+              <li><strong class="text-amber-300">3× Enerji Emilimi:</strong> <em>Journal of Materials Research and Technology</em> (2021) çalışmasında kenevir kumaş kompozitlerinin <strong class="text-white">95–108.5 J</strong> balistik enerji soğurduğu (geleneksel referansın 36 J olduğu) belirtilmiştir (<a href="https://www.customarmorgroup.com/blogs/news/understanding-the-layers-different-types-of-ballistic-protection" target="_blank" rel="noopener noreferrer" class="src-link">JMRT / Custom Armor</a>).</li>
+              <li><strong class="text-amber-300">Çok Katmanlı Zırh:</strong> Sert yüzeyli çelik ile desteklenen kenevir kompozit paneller standart atış mesafelerinde delinmeyi önlemiştir (<a href="https://journal.eu-jr.eu/sciencerise/article/view/3858" target="_blank" rel="noopener noreferrer" class="src-link">ScienceRise, 2025</a>).</li>
+              <li><strong class="text-amber-300">Darbe Dayanımı:</strong> E-cam ile karşılaştırıldığında kenevirin darbe emme ve esneme kabiliyeti yüksektir (<a href="https://www.mdpi.com/2073-4360/17/3/276" target="_blank" rel="noopener noreferrer" class="src-link">MDPI Polymers, 2025</a>).</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Defense Chart -->
+        <div class="bg-slate-950/75 border border-slate-800 rounded-xl p-4 mt-4">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-3 gap-2">
+            <div>
+              <h3 class="text-sm font-semibold text-white">Savunma Performans Göstergeleri (Doğrulanmış Deneysel Veriler)</h3>
+              <p class="text-xs text-slate-400">Balistik enerji sönümleme (Joule) ve maksimum akustik ses yutma katsayısı (α)</p>
+            </div>
+          </div>
+          <div class="relative h-64">
+            <canvas id="defenseChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== TAB 4: SİVİL & İÇ DİZAYN PANELLERİ ==================== -->
+    <section id="tab-civil" class="tab-pane space-y-6">
+      <div class="panel-card rounded-2xl p-5 sm:p-6 space-y-5">
+        <div class="border-b border-slate-800 pb-4">
+          <h2 class="text-xl font-bold text-white">Sivil Denizcilik &amp; Yat İç Dizayn Panelleri</h2>
+          <p class="text-sm text-slate-400 mt-0.5">Tekne içi yapısal olmayan kabin duvarları, tavan panelleri, hava kanalları ve mobilya elemanlarında LSAM kenevir uygulaması</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="bg-slate-900/75 border border-slate-800 rounded-xl p-4">
+            <div class="text-xs font-mono-tech text-cyan-400">ISIL İLETKENLİK (λ)</div>
+            <div class="text-2xl font-bold text-white mt-1">0.068 <span class="text-xs font-normal text-slate-400">W/m·K</span></div>
+            <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+              Mikronize kenevir sapı + PP/PE biyokompozitleri taş yünü ile kıyaslanabilir ısı yalıtımı sağlar (0.068 ± 0.002 W/m·K)
+              (<a href="https://www.mdpi.com/2504-477x/9/8/440" target="_blank" rel="noopener noreferrer" class="src-link">MDPI, 2025</a>;
+              <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12873272/" target="_blank" rel="noopener noreferrer" class="src-link">PMC 0.07 W/m·K</a>).
+            </p>
+          </div>
+
+          <div class="bg-slate-900/75 border border-slate-800 rounded-xl p-4">
+            <div class="text-xs font-mono-tech text-emerald-400">NEM &amp; HAVA KALİTESİ</div>
+            <div class="text-2xl font-bold text-white mt-1">%45–55 <span class="text-xs font-normal text-slate-400">Bağıl Nem</span></div>
+            <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+              Kenevir paneller kabin içi nemi dengeler, doğal koku nötralizasyonu sağlar ve yalnızca %0.9 şişme ile ±2.9 mm/m boyutsal toleransını korur
+              (<a href="https://vibebyvision.com/walls/eco/" target="_blank" rel="noopener noreferrer" class="src-link">Vibe Eco Teknik Veri</a>).
+            </p>
+          </div>
+
+          <div class="bg-slate-900/75 border border-slate-800 rounded-xl p-4">
+            <div class="text-xs font-mono-tech text-amber-400">KABİN AKUSTİK KONFORU</div>
+            <div class="text-2xl font-bold text-white mt-1">Class A–D</div>
+            <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+              Makine dairesi ve baş/kıç thruster gürültüsünü kesmek için 1000–3000 Hz kritik insan işitme bandında yüksek yutuculuk sunar
+              (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9143432/" target="_blank" rel="noopener noreferrer" class="src-link">PMC9143432</a>;
+              <a href="https://vibebyvision.com/walls/eco/" target="_blank" rel="noopener noreferrer" class="src-link">Vibe Eco</a>).
+            </p>
+          </div>
+
+          <div class="bg-slate-900/75 border border-slate-800 rounded-xl p-4">
+            <div class="text-xs font-mono-tech text-purple-400">YEŞİL DÖNÜŞÜM (LCA)</div>
+            <div class="text-2xl font-bold text-white mt-1">CO₂ <span class="text-xs font-normal text-slate-400">Depolama</span></div>
+            <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+              AB Ömrünü Tamamlamış Araçlar/Tekneler regülasyonları ve net-sıfır hedefleriyle uyumlu, düşük VOC salınımlı biyo-paneller üretilir
+              (<a href="https://www.persistencemarketresearch.com/market-research/biocomposites-market.asp" target="_blank" rel="noopener noreferrer" class="src-link">Persistence Market Research</a>).
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-slate-900/60 border border-slate-800 rounded-xl p-5">
+          <h3 class="text-base font-bold text-white mb-3">Avenco LSAM ile Basılabilecek Sivil Tekne İçi Bileşenler</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-slate-300">
+            <ul class="space-y-2 list-disc pl-5">
+              <li><strong class="text-white">Modüler Kabin Bölme Duvarları:</strong> Kontrplak veya ağır CTP paneller yerine hafif, ses yalıtımlı petek/archimedean dolgu geometrili paneller (<a href="https://rapidfusion.co.uk/blogs/news/marine-additive-manufacturing-lfam" target="_blank" rel="noopener noreferrer" class="src-link">RapidFusion LFAM</a>).</li>
+              <li><strong class="text-white">Hava Kanalları ve Havalandırma Kapakları:</strong> Teknenin eğrisel gövde formuna tam oturan özel tasarım HVAC kanalları (<a href="https://rapidfusion.co.uk/blogs/news/marine-additive-manufacturing-lfam" target="_blank" rel="noopener noreferrer" class="src-link">RapidFusion</a>).</li>
+            </ul>
+            <ul class="space-y-2 list-disc pl-5">
+              <li><strong class="text-white">Mobilya Altyapıları ve Dolap İskeletleri:</strong> Doğal kahverengi ahşap/kraft dokusuyla ekstra kaplama gerektirmeyen estetik yüzeyler (<a href="https://medium.com/3dprinterchat/kanesis-hemp-bio-plastic-pla-review-57518be8e765" target="_blank" rel="noopener noreferrer" class="src-link">Kanèsis Yüzey İncelemesi</a>).</li>
+              <li><strong class="text-white">Geri Dönüştürülebilir Ömür Sonu (Circular Boat):</strong> Termoplastik matris sayesinde kullanım ömrü dolan kabin panelleri kırılarak yeniden pelet haline getirilebilir (<a href="https://3dprintingindustry.com/news/tanaruz-plans-to-produce-300-3d-printed-boats-by-2023-207466/" target="_blank" rel="noopener noreferrer" class="src-link">Tanaruz Döngüsel Model</a>).</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== TAB 5: LİTERATÜR & DÜNYADAKİ ÖRNEKLER ==================== -->
+    <section id="tab-literature" class="tab-pane space-y-6">
+      <!-- Global Examples Cards -->
+      <div class="panel-card rounded-2xl p-5 sm:p-6 space-y-4">
+        <div class="border-b border-slate-800 pb-4">
+          <h2 class="text-xl font-bold text-white">Dünyadan Büyük Ölçekli 3D Baskı Tekne ve Kenevir Örnekleri</h2>
+          <p class="text-sm text-slate-400 mt-0.5">Doğrulanmış akademik ve endüstriyel projeler</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-sm">
+          <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-4 space-y-2">
+            <div class="flex justify-between items-start gap-2">
+              <h3 class="font-bold text-cyan-300">University of Maine (UMaine)</h3>
+              <span class="font-mono-tech text-[10px] px-2 py-0.5 rounded bg-cyan-500/15 text-cyan-300">ABD • BİYO-LSAM</span>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              2019'da <strong class="text-white">3Dirigo</strong> (7.62 m, 2.2 ton, 72 saatte baskı, %50 odun selülozu + polimer ile 3 Guinness Rekoru), 2022'de ABD Deniz Piyadeleri için iki büyük lojistik tekne ve Ağustos 2026'da ~40 knot hıza ulaşabilen 30 ft (~9.1 m) <strong class="text-white">3Dirigo X</strong> üretilmiştir
+              (<a href="https://composites.umaine.edu/2019/10/11/umaine-composites-center-receives-three-guinness-world-records-related-to-largest-3d-printer/" target="_blank" rel="noopener noreferrer" class="src-link">UMaine 2019</a>;
+              <a href="https://umaine.edu/news/2026/08/university-of-maine-launches-3dirigo-x-advancing-future-of-maritime-manufacturing/" target="_blank" rel="noopener noreferrer" class="src-link">UMaine 3Dirigo X 2026</a>).
+            </p>
+          </div>
+
+          <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-4 space-y-2">
+            <div class="flex justify-between items-start gap-2">
+              <h3 class="font-bold text-emerald-300">CEAD &amp; Damen Shipyards</h3>
+              <span class="font-mono-tech text-[10px] px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-300">HOLLANDA • SAVUNMA/İŞ</span>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              CEAD'in <strong class="text-white">Faber Navalis</strong> sistemi 6 metrelik iş teknesi gövdesini 50 saatte (12 m'ye kadar kapasite) basabilmektedir. Damen ile birlikte <strong class="text-white">HDPro</strong> (yüksek darbe dayanımlı HDPE) iş ve devriye tekneleri geliştirilmektedir
+              (<a href="https://ceadgroup.com/segments/large-format-additive-manufacturing-maritime-industry/" target="_blank" rel="noopener noreferrer" class="src-link">CEAD Maritime</a>;
+              <a href="https://www.metstrade.com/news/emerging-technologies/3d-printed-yachts" target="_blank" rel="noopener noreferrer" class="src-link">Metstrade, 2025</a>).
+            </p>
+          </div>
+
+          <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-4 space-y-2">
+            <div class="flex justify-between items-start gap-2">
+              <h3 class="font-bold text-amber-300">IMPACD Boats &amp; Tanaruz</h3>
+              <span class="font-mono-tech text-[10px] px-2 py-0.5 rounded bg-amber-500/15 text-amber-300">HOLLANDA • DÖNGÜSEL</span>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              <strong class="text-white">Tanaruz</strong> 14 m ABB robotik yazıcı ile 6.5 m tekneleri ~40 saatte geri dönüştürülmüş PP + %30 cam elyaf ile basarken; <strong class="text-white">IMPACD Boats</strong> TU Delft çalışmasına göre standart teknelerden %74 daha sürdürülebilir geri dönüştürülebilir tekneler üretmektedir
+              (<a href="https://3dprintingindustry.com/news/tanaruz-plans-to-produce-300-3d-printed-boats-by-2023-207466/" target="_blank" rel="noopener noreferrer" class="src-link">3D Printing Industry</a>;
+              <a href="https://www.3dnatives.com/en/3d-printed-boats-300320214/" target="_blank" rel="noopener noreferrer" class="src-link">3Dnatives</a>).
+            </p>
+          </div>
+
+          <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-4 space-y-2">
+            <div class="flex justify-between items-start gap-2">
+              <h3 class="font-bold text-purple-300">Kanèsis &amp; 3D-Fuel</h3>
+              <span class="font-mono-tech text-[10px] px-2 py-0.5 rounded bg-purple-500/15 text-purple-300">İTALYA / ABD • KENEVİR</span>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              İtalyan girişim <strong class="text-white">Kanèsis</strong> endüstriyel kenevir atıklarından <strong class="text-white">HBP®</strong> filamentini, ABD'li <strong class="text-white">3D-Fuel</strong> ise c2renew iş birliğiyle <strong class="text-white">Entwined</strong> kenevir-PLA filamentini geliştirerek kenevirin ekstrüzyon baskı yapılabilirliğini ticari olarak kanıtlamıştır
+              (<a href="https://www.3dnatives.com/en/hemp-3d-printer-filament-sustainable-alternative-200920184/" target="_blank" rel="noopener noreferrer" class="src-link">3Dnatives</a>).
+            </p>
+          </div>
+
+          <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-4 space-y-2">
+            <div class="flex justify-between items-start gap-2">
+              <h3 class="font-bold text-sky-300">Moi Composites (MAMBO)</h3>
+              <span class="font-mono-tech text-[10px] px-2 py-0.5 rounded bg-sky-500/15 text-sky-300">İTALYA • SÜREKLİ FİBER</span>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              2020 Cenova Tekne Fuarı'nda tanıtılan <strong class="text-white">MAMBO</strong>, sürekli fiber imalat (CFM) tekniğiyle kalıp kullanmadan robotik olarak basılan ilk tek parça sürekli cam elyaf tekne olmuştur
+              (<a href="https://acmanet.org/mambo-3d-printed-boat-made-with-continuous-fiberglass-thermoset-material/" target="_blank" rel="noopener noreferrer" class="src-link">ACMA</a>).
+            </p>
+          </div>
+
+          <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-4 space-y-2">
+            <div class="flex justify-between items-start gap-2">
+              <h3 class="font-bold text-rose-300">Avenco 3D (İstanbul)</h3>
+              <span class="font-mono-tech text-[10px] px-2 py-0.5 rounded bg-rose-500/15 text-rose-300">TÜRKİYE • PROJE ORTAĞI</span>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              KUKA robot kolu ve büyük ölçekli termoplastik LFAM ekstrüderiyle 10 metreye kadar tekne ve kalıp baskısı yapabilen yerli teknoloji sağlayıcısı; bu proje ile kenevir pelet entegrasyonu hedeflenmektedir
+              (<a href="https://www.avenco3d.com/tr/hakkimizda/" target="_blank" rel="noopener noreferrer" class="src-link">Avenco 3D</a>;
+              <a href="https://avenco.com.tr/sector/denizcilik-marine/" target="_blank" rel="noopener noreferrer" class="src-link">Avenco Marine</a>).
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filterable Verified Literature Table -->
+      <div class="panel-card rounded-2xl p-5 sm:p-6 space-y-4">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-3">
+          <div>
+            <h3 class="text-lg font-bold text-white">Doğrulanmış Bilimsel Literatür &amp; Kaynak Dizini</h3>
+            <p class="text-xs text-slate-400">Kategoriye veya anahtar kelimeye göre filtreleyin</p>
+          </div>
+          <div class="flex flex-wrap items-center gap-2">
+            <input id="litSearch" type="text" placeholder="Ara (örn: TGA, radar, 70 GPa, 3Dirigo)..." class="bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 w-56" />
+            <div class="flex flex-wrap gap-1.5" id="litFilters">
+              <button type="button" class="lit-filter-btn px-2.5 py-1 rounded-md text-xs font-medium bg-cyan-500/20 text-cyan-300 border border-cyan-500/40" data-cat="all">Tümü</button>
+              <button type="button" class="lit-filter-btn px-2.5 py-1 rounded-md text-xs font-medium bg-slate-900 text-slate-300 border border-slate-700 hover:border-slate-500" data-cat="Üretim">Üretim &amp; TGA</button>
+              <button type="button" class="lit-filter-btn px-2.5 py-1 rounded-md text-xs font-medium bg-slate-900 text-slate-300 border border-slate-700 hover:border-slate-500" data-cat="Maliyet">Maliyet &amp; LCA</button>
+              <button type="button" class="lit-filter-btn px-2.5 py-1 rounded-md text-xs font-medium bg-slate-900 text-slate-300 border border-slate-700 hover:border-slate-500" data-cat="Savunma">Savunma &amp; Akustik</button>
+              <button type="button" class="lit-filter-btn px-2.5 py-1 rounded-md text-xs font-medium bg-slate-900 text-slate-300 border border-slate-700 hover:border-slate-500" data-cat="Tekne">LSAM Tekne</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-xs sm:text-sm">
+            <thead>
+              <tr class="border-b border-slate-700 text-slate-400 font-mono-tech text-[11px] uppercase">
+                <th class="py-2.5 pr-3">Kategori</th>
+                <th class="py-2.5 px-3">Kaynak / Çalışma</th>
+                <th class="py-2.5 px-3">Temel Bulgu</th>
+                <th class="py-2.5 pl-3">Bağlantı</th>
+              </tr>
+            </thead>
+            <tbody id="litTableBody" class="divide-y divide-slate-800/80 text-slate-300">
+              <!-- Populated by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-slate-800/80 py-5 mt-8 text-center text-xs text-slate-500 font-mono-tech">
+    AVENCO 10m LSAM &amp; Kenevir Biyokompozit Ar-Ge Portalı • Tüm veriler doğrulanmış bilimsel ve endüstriyel kaynaklara dayalıdır.
+  </footer>
+
+  <script>
+    // 1. Tab Switching Logic
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabPanes = document.querySelectorAll('.tab-pane');
+    let thermalChartInstance = null;
+    let defenseChartInstance = null;
+
+    function switchTab(tabId) {
+      tabBtns.forEach(btn => {
+        const isMatch = btn.dataset.tab === tabId;
+        btn.classList.toggle('active', isMatch);
+        btn.setAttribute('aria-selected', isMatch ? 'true' : 'false');
+      });
+      tabPanes.forEach(pane => {
+        pane.classList.toggle('active', pane.id === `tab-${tabId}`);
+      });
+      if (tabId === 'manufacturing') initThermalChart();
+      if (tabId === 'defense') initDefenseChart();
+      try { history.replaceState(null, '', `#${tabId}`); } catch (e) {}
+    }
+
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => switchTab(btn.dataset.tab));
+    });
+
+    // 2. Charts (Initialized on demand when tab becomes visible)
+    function initThermalChart() {
+      const ctx = document.getElementById('thermalChart');
+      if (!ctx) return;
+      if (thermalChartInstance) {
+        thermalChartInstance.resize();
+        return;
+      }
+      thermalChartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['rPP (Tm)', 'PBS + Kenevir', 'WF-aPLA (LFAM)', 'Kenevir TGA Sınırı', 'CF-ABS (LFAM)', 'PETG (Optimal)'],
+          datasets: [{
+            label: 'İşlem / Sınır Sıcaklığı (°C)',
+            data: [164, 190, 203, 220, 247, 250],
+            backgroundColor: [
+              'rgba(16, 185, 129, 0.75)',
+              'rgba(16, 185, 129, 0.75)',
+              'rgba(34, 211, 238, 0.75)',
+              'rgba(245, 158, 11, 0.85)',
+              'rgba(239, 68, 68, 0.75)',
+              'rgba(239, 68, 68, 0.75)'
+            ],
+            borderColor: ['#10b981', '#10b981', '#22d3ee', '#f59e0b', '#ef4444', '#ef4444'],
+            borderWidth: 1,
+            borderRadius: 6
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: (c) => `${c.parsed.y} °C`
+              }
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: 280,
+              grid: { color: 'rgba(51, 65, 85, 0.4)' },
+              ticks: { color: '#94a3b8', callback: v => v + '°C' }
+            },
+            x: {
+              grid: { display: false },
+              ticks: { color: '#cbd5e1', font: { size: 11 } }
+            }
+          }
+        }
+      });
+    }
+
+    function initDefenseChart() {
+      const ctx = document.getElementById('defenseChart');
+      if (!ctx) return;
+      if (defenseChartInstance) {
+        defenseChartInstance.resize();
+        return;
+      }
+      defenseChartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['Referans Malzeme (Balistik)', 'Kenevir Kumaş Kompozit (Min)', 'Kenevir Kumaş Kompozit (Maks)'],
+          datasets: [{
+            label: 'Soğurulan Balistik Enerji (Joule)',
+            data: [36, 95, 108.5],
+            backgroundColor: ['rgba(100, 116, 139, 0.7)', 'rgba(16, 185, 129, 0.75)', 'rgba(34, 211, 238, 0.8)'],
+            borderColor: ['#64748b', '#10b981', '#22d3ee'],
+            borderWidth: 1,
+            borderRadius: 6
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { labels: { color: '#cbd5e1' } },
+            tooltip: { callbacks: { label: c => `${c.parsed.y} Joule` } }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: 125,
+              grid: { color: 'rgba(51, 65, 85, 0.4)' },
+              ticks: { color: '#94a3b8', callback: v => v + ' J' }
+            },
+            x: {
+              grid: { display: false },
+              ticks: { color: '#cbd5e1' }
+            }
+          }
+        }
+      });
+    }
+
+    // 3. Interactive Simulator Logic
+    const simMass = document.getElementById('simMass');
+    const simRatio = document.getElementById('simRatio');
+    const simMatrix = document.getElementById('simMatrix');
+
+    function updateSimulator() {
+      const mass = Number(simMass.value);
+      const ratio = Number(simRatio.value) / 100;
+      const matrixName = simMatrix.options[simMatrix.selectedIndex].text.split('—')[0].trim();
+
+      document.getElementById('simMassVal').textContent = `${mass} kg`;
+      document.getElementById('simRatioVal').textContent = `%${Math.round(ratio * 100)}`;
+
+      // Fiber mass in reference GF composite vs equal-volume Hemp fiber (1.45 vs 2.50 g/cm3)
+      const gfFiberMass = mass * ratio;
+      const hempFiberMass = gfFiberMass * (1.45 / 2.50);
+      const saved = Math.round(gfFiberMass - hempFiberMass);
+      const newMass = Math.round(mass - saved);
+
+      document.getElementById('outWeightSave').textContent = `-${saved} kg`;
+      document.getElementById('outNewMass').textContent = `${newMass} kg`;
+      document.getElementById('outMatrixNote').textContent = `${matrixName} + %${Math.round(ratio * 100)} Kenevir`;
+    }
+
+    [simMass, simRatio, simMatrix].forEach(el => el.addEventListener('input', updateSimulator));
+    updateSimulator();
+
+    // 4. Filterable Literature Table
+    const literatureData = [
+      { cat: 'Üretim', title: 'Additive Manufacturing of Biodegradable Hemp-Reinforced PBS (PMC, 2023)', finding: 'TGA ile kenevirin ~220 °C\'ye kadar kararlı olduğu, uygun baskı penceresinin 180–200 °C olduğu belirlendi.', url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC10221133/' },
+      { cat: 'Üretim', title: 'TGA Properties of Cellulosic Natural Fiber Composites (PMC, 2021)', finding: 'Doğal lif işleme sınırı ~200 °C; NaOH alkali işlemi ve MA-g-PE/MAPP uyumlulaştırıcı arayüz bağını güçlendirir.', url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC8399699/' },
+      { cat: 'Üretim', title: 'Upgrading Recycled PP with Short Hemp Fiber (MDPI Polymers, 2021)', finding: 'rPP ergime sıcaklığı 163.7 °C; PP-g-MA ile %10–30 kısa kenevir lifi başarıyla kompaundlandı.', url: 'https://www.mdpi.com/2073-4360/13/8/1248' },
+      { cat: 'Üretim', title: 'Recycling Large-Format 3D Printed Formworks (ASCE, 2024)', finding: 'LFAM ekstrüderde doğal lifli WF-aPLA ~37 kg/saat hızda 203 °C\'de basıldı (CF-ABS 247 °C).', url: 'https://ascelibrary.org/doi/10.1061/JCCOF2.CCENG-4758' },
+      { cat: 'Maliyet', title: 'Polymer Structural Composites Reinforced with Hemp Fibres (MDPI, 2025)', finding: 'Kenevir yoğunluğu 1.4–1.5 g/cm³ (GF 2.5 g/cm³), Young modülü 70 GPa (GF ile eşit) ve yüksek darbe emilimi.', url: 'https://www.mdpi.com/2073-4360/17/3/276' },
+      { cat: 'Maliyet', title: 'Structural Correlation Coefficient for Polymer Composites (MDPI, 2025)', finding: '1 ton kenevir lifi üretimi için gereken enerji E-camdan 7.5 kat daha az (GJ/ton) ve hammadde fiyatı daha düşük.', url: 'https://www.mdpi.com/2073-4360/17/24/3295' },
+      { cat: 'Maliyet', title: 'Hemp Fiber / Recycled HDPE Composites (KPU Report)', finding: 'rHDPE/kenevir kompozitleri saf HDPE\'ye kıyasla %31–34 daha düşük maliyetlidir.', url: 'https://wordpress.kpu.ca/najikad93/files/2020/12/Mechanical-Properties-of-hemp-fiber.pdf' },
+      { cat: 'Savunma', title: 'Radar-Absorbing Fiber-Plastic Composite Material (DE102022004648A1)', finding: 'Radar soğurucu kompozit patentinde bitkisel lif olarak doğrudan kenevir lifi (hemp fibers) tanımlanmıştır.', url: 'https://patents.google.com/patent/DE102022004648A1/en' },
+      { cat: 'Savunma', title: 'Acoustic & Thermal Insulation of Hemp Shive Panels (PMC, 2026)', finding: 'ISO 10354-2 empedans tüpünde tepe ses yutma katsayısı α = 0.60–0.97; ısıl iletkenlik 0.07 W/m·K.', url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC12873272/' },
+      { cat: 'Savunma', title: 'Understanding Ballistic Protection Layers (JMRT / Custom Armor, 2024)', finding: 'Kenevir kumaş kompozitleri 95–108.5 J balistik enerji emilimi sağladı (geleneksel referans: 36 J).', url: 'https://www.customarmorgroup.com/blogs/news/understanding-the-layers-different-types-of-ballistic-protection' },
+      { cat: 'Tekne', title: 'UMaine 3Dirigo & 3Dirigo X (UMaine News, 2019–2026)', finding: '7.62 m 3Dirigo (72 saat, biyo-polimer) ve 30 ft 3Dirigo X (~40 knot açık deniz teknesi) üretildi.', url: 'https://umaine.edu/news/2026/08/university-of-maine-launches-3dirigo-x-advancing-future-of-maritime-manufacturing/' },
+      { cat: 'Tekne', title: 'CEAD Faber Navalis & Damen HDPro (CEAD / Metstrade, 2025–2026)', finding: '6 m tekne gövdesi 50 saatte otomatik basılabiliyor; Damen ile 12 m\'ye kadar iş/devriye tekneleri geliştiriliyor.', url: 'https://ceadgroup.com/segments/large-format-additive-manufacturing-maritime-industry/' }
+    ];
+
+    let activeCat = 'all';
+    const litBody = document.getElementById('litTableBody');
+    const litSearch = document.getElementById('litSearch');
+    const filterBtns = document.querySelectorAll('.lit-filter-btn');
+
+    function renderLiterature() {
+      const q = litSearch.value.trim().toLowerCase();
+      const filtered = literatureData.filter(item => {
+        const matchCat = activeCat === 'all' || item.cat === activeCat;
+        const matchText = !q || item.title.toLowerCase().includes(q) || item.finding.toLowerCase().includes(q) || item.cat.toLowerCase().includes(q);
+        return matchCat && matchText;
+      });
+      if (!filtered.length) {
+        litBody.innerHTML = `<tr><td colspan="4" class="py-6 text-center text-slate-500">Eşleşen kaynak bulunamadı.</td></tr>`;
+        return;
+      }
+      litBody.innerHTML = filtered.map(item => `
+        <tr class="hover:bg-slate-900/50 transition-colors">
+          <td class="py-2.5 pr-3"><span class="font-mono-tech text-[11px] px-2 py-0.5 rounded bg-slate-800 text-cyan-300 border border-slate-700">${item.cat}</span></td>
+          <td class="py-2.5 px-3 font-medium text-white">${item.title}</td>
+          <td class="py-2.5 px-3 text-slate-300">${item.finding}</td>
+          <td class="py-2.5 pl-3 whitespace-nowrap"><a href="${item.url}" target="_blank" rel="noopener noreferrer" class="src-link">Kaynağa Git ↗</a></td>
+        </tr>
+      `).join('');
+    }
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        activeCat = btn.dataset.cat;
+        filterBtns.forEach(b => {
+          const on = b === btn;
+          b.className = on
+            ? 'lit-filter-btn px-2.5 py-1 rounded-md text-xs font-medium bg-cyan-500/20 text-cyan-300 border border-cyan-500/40'
+            : 'lit-filter-btn px-2.5 py-1 rounded-md text-xs font-medium bg-slate-900 text-slate-300 border border-slate-700 hover:border-slate-500';
+        });
+        renderLiterature();
+      });
+    });
+
+    litSearch.addEventListener('input', renderLiterature);
+    renderLiterature();
+
+    // Check URL hash on load
+    const initialHash = window.location.hash.replace('#', '');
+    if (['vision', 'manufacturing', 'defense', 'civil', 'literature'].includes(initialHash)) {
+      switchTab(initialHash);
+    }
+  </script>
+</body>
+</html>
